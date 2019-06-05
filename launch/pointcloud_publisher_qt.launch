@@ -1,0 +1,13 @@
+<launch>
+    <arg name="topic_name" default="/kinect2/qhd/points"/>
+    <arg name="frame_id" default="kinect2_link"/>
+    <arg name="rate" default="10"/>
+    <arg name="output" default="screen"/>
+    <!--node name="transform_publisher_node" pkg="transform_publisher" type="transform_publisher" /-->
+    <include file="$(find tf_base2camera)/launch/tf_base2camera.launch"/>
+    <node name="pointcloud_publisher_qt" type="pointcloud_publisher_qt" pkg="pointcloud_publisher_qt" output="$(arg output)">
+        <param name="topic_name" value="$(arg topic_name)"/>
+        <param name="frame_id" value="$(arg frame_id)"/>
+        <param name="rate" value="$(arg rate)"/>
+    </node>
+</launch>
